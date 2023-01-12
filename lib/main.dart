@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
                 ],
                 supportedLocales: const [
                   Locale('en', ''), // English, no country code
-                  Locale('fa', ''), // Spanish, no country code
-                  Locale('ar', ''), // Spanish, no country code
+                  Locale('fa', ''), // Persian, no country code
+                  Locale('ar', ''), // Arabic, no country code
                 ],
                 home: const MyHomePage(),
               ),
@@ -46,25 +46,29 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Localization'),
         actions: [
-          DropdownButton(
-              value: context.watch<LanguageProvider>().language,
-              items: const [
-                DropdownMenuItem(
-                  child: Text('English'),
-                  value: 'en',
-                ),
-                DropdownMenuItem(
-                  child: Text('فارسی'),
-                  value: 'fa',
-                ),
-                DropdownMenuItem(
-                  child: Text('العربیه'),
-                  value: 'ar',
-                ),
-              ],
-              onChanged: (value) async {
-                context.read<LanguageProvider>().saveLocale(value as String);
-              }),
+          DropdownButtonHideUnderline(
+            child: DropdownButton(
+                value: context.watch<LanguageProvider>().language,
+                items: const [
+                  DropdownMenuItem(
+                    child: Text('English'),
+                    value: 'en',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('فارسی'),
+                    value: 'fa',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('العربیه'),
+                    value: 'ar',
+                  ),
+                ],
+                onChanged: (value) async {
+                  context
+                      .read<LanguageProvider>()
+                      .saveLocale(value as String);
+                }),
+          ),
         ],
       ),
       body: Center(
